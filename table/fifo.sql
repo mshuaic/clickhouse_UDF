@@ -1,4 +1,4 @@
-CREATE TABLE aml.haircut
+CREATE TABLE {db_name:Identifier}.{table_name:Identifier}
 (
     `block_number` UInt64,
     `tx_index` UInt64,
@@ -11,7 +11,7 @@ CREATE TABLE aml.haircut
     `tainted_src` Int256,
     `tainted_des` Int256
 )
-ENGINE = Executable('haircut 0xa09871AEadF4994Ca12f5c0b6056BBd1d343c029 342000', TabSeparated, (
+ENGINE = Executable('fifo '||{seed:String}||' '||{amount:String}, TabSeparated, (
     SELECT *
     FROM ethereum.tx_balance
     WHERE (block_number >= {start_block:UInt64}) AND (block_number <= {end_block:UInt64})
