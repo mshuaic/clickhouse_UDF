@@ -10,3 +10,4 @@ $CLICKHOUSE_CLIENT \
     --param_db_name=${QUERY_DB_NAME} \
     --param_from_table_name=${QUERY_FROM_TABLE_NAME} \
     --param_to_table_name=${QUERY_TO_TABLE_NAME} \
+    --time

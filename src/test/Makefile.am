@@ -1,17 +1,12 @@
-#
-#   Makefile.am
-#
-#   $Id$
-#
-
-# forward compatibility
-# datarootdir = @datarootdir@
+bin_PROGRAMS = test
+rand_SOURCES = rand.cpp truncated_normal.cpp
 
 
-# # subdirs
-# SUBDIRS =	\
-# src	\
-# test
 
-bin_PROGRAMS = haircut
-haircut_SOURCES = haircut.cpp
+clean-local:
+	@rm config.status configure config.log
+	@rm Makefile
+	@rm -r autom4te.cache/
+	@rm aclocal.m4
+	@rm Makefile.in
+	@rm stamp-h1

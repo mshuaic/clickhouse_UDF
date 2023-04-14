@@ -11,10 +11,12 @@ CREATE TABLE {db_name:Identifier}.{table_name:Identifier}
     `tainted_src` Int256,
     `tainted_des` Int256
 )
-ENGINE = Executable('fifo '||{seed:String}||' '||{amount:String}, TabSeparated, (
+ENGINE = Executable({algorithm:String}||' '||{seed:String}||' '||{amount:String}, TabSeparated, (
     SELECT *
     FROM ethereum.tx_balance
     WHERE (block_number >= {start_block:UInt64}) AND (block_number <= {end_block:UInt64})
+          AND balance > 0
+          AND value > 0
     ORDER BY (block_number, transaction_index) ASC
 ))
 SETTINGS command_read_timeout = 100000, command_write_timeout = 100000

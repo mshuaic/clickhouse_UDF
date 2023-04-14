@@ -1,4 +1,4 @@
-SELECT abs(sum(tainted) - toInt256({amount:UInt64} * pow(10, 18))) / ({amount:UInt64} * pow(10, 18)) AS error_rate
+SELECT (sum(tainted) - toInt256({amount:UInt64} * pow(10, 18))) / ({amount:UInt64} * pow(10, 18)) AS error_rate
 FROM
 (
     SELECT argMax(tainted, _max_block_index) AS tainted

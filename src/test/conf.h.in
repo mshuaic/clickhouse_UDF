@@ -1,4 +1,7 @@
-/* config.h.in.  Generated from configure.ac by autoheader.  */
+/* conf.h.in.  Generated from configure.ac by autoheader.  */
+
+/* define if the compiler supports basic C++20 syntax */
+#undef HAVE_CXX20
 
 /* Define to 1 if you have the `boost_system' library (-lboost_system). */
 #undef HAVE_LIBBOOST_SYSTEM
@@ -6,6 +9,9 @@
 /* Define to 1 if you have the `boost_system-mt' library (-lboost_system-mt).
    */
 #undef HAVE_LIBBOOST_SYSTEM_MT
+
+/* Name of package */
+#undef PACKAGE
 
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
@@ -24,3 +30,6 @@
 
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
+
+/* Version number of package */
+#undef VERSION
