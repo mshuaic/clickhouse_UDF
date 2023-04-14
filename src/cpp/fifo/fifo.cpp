@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
 
 
   while (cin >> blk_num >> tx_index >> txid >> src >> des >> value >> balance) {
-    if (tainted.contains(src) == false || tainted[src] == 0 || balance == 0) {
+    if (tainted.contains(src) == false || tainted[src] == 0) {
       continue;
     }
 
@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
     tainted[des] += taint_amount;
     tainted[src] -= taint_amount;
     if (tainted[src] == 0)
-      tainted.erase(src)
+      tainted.erase(src);
 
     cout << to_string(blk_num) << "\t"
          << to_string(tx_index) << "\t"

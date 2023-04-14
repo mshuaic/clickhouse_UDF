@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
 
 
   while (cin >> blk_num >> tx_index >> txid >> src >> des >> value >> balance) {
-    if (tainted.contains(src) == false || tainted[src] == 0 || balance == 0) {
+    if (tainted.contains(src) == false || tainted[src] == 0) {
       continue;
     }
 
