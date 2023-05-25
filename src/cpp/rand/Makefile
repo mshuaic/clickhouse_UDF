@@ -766,12 +766,13 @@ uninstall-am: uninstall-binPROGRAMS
 
 
 clean-local:
-	@rm config.status configure config.log
-	@rm Makefile
-	@rm -r autom4te.cache/
-	@rm aclocal.m4
-	@rm Makefile.in
-	@rm stamp-h1 compile depcomp missing install-sh configure~
+	@rm -f config.status configure config.log
+	@rm -f Makefile
+	@rm -fr autom4te.cache/
+	@rm -f aclocal.m4
+	@rm -f Makefile.in
+	@rm -f stamp-h1 compile depcomp missing install-sh configure~
+	@rm -f conf.h.in
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

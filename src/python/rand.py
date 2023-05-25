@@ -18,15 +18,15 @@ if __name__ == '__main__':
             blk, txindex, txid, src, des, value, balance = line_split
             balance = int(balance)
             value = int(value)
-            if (src not in tainted.keys()
-                or tainted[src] == 0
-                or balance == 0
-                or value == 0):
+            if (src not in tainted.keys() or tainted[src] == 0):
                 continue
 
+            # tx fee
             tainted[src] = min(balance, tainted[src])
-            a, b = 0, value
+
+            a, b = 0, min(value, tainted[src])
             mean = tainted[src] * value / balance
+
             std = 1
             lower_bound = (a - mean) / std
             upper_bound = (b - mean) / std

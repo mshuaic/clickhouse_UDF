@@ -1,9 +1,11 @@
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/random.hpp>
 #include <iostream>
 #include <string>
-#include "truncated_normal.hpp"
-#include<ctime>
+#include <ctime>
+#include <boost/multiprecision/cpp_dec_float.hpp>
+
 
 using namespace boost::multiprecision;
 using namespace boost::algorithm;
@@ -30,6 +32,7 @@ int main(int argc, char **argv) {
   unordered_map<string, uint256_t> tainted{{seed, amount}};
 
   int rseed = time(0);
+  boost::random::mt19937 rng{};
 
   while (cin >> blk_num >> tx_index >> txid >> src >> des >> value >> balance) {
     if (tainted.contains(src) == false
@@ -38,17 +41,24 @@ int main(int argc, char **argv) {
     }
 
     tainted[src] = min(balance, tainted[src]);
-    uint256_t scale = uint256_t(pow(10, 18));
-    double a = 0;
-    double b = double(min(tainted[src], value) / scale);
-    double mean = double(tainted[src] * value / balance / scale);
-    double std = 1;
-    
-    // Define the truncated distribution
-    double x = truncated_normal_ab_sample(mean, std, a, b, rseed);
-    uint256_t taint_amount = uint256_t(x * pow(10, 18));
+    // uint256_t scale = uint256_t(pow(10, 18));
+    // double a = 0;
+    // double b = double(tainted[src] / scale);
+    // double mean = double(tainted[src] * value / balance / scale);
+    // double std = 1;
 
-    // uint256_t taint_amount = 0;
+    // Define the truncated distribution
+    // double x = truncated_normal_ab_sample(mean, std, a, b, rseed);
+    // uint256_t taint_amount = uint256_t(x * pow(10, 18));
+
+    // boost::random::mt19937 rng;
+    boost::random::uniform_01<double> dist;
+    cpp_dec_float_100 r = dist(rng);
+
+    uint256_t taint_amount = uint256_t(r * cpp_dec_float_100(min(value, tainted[src])));
+
+    // uint256_t taint_amount = static_cast<uint256_t>(taint_amount)
+
     if (taint_amount == 0)
       continue;
     tainted[des] += taint_amount;

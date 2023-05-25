@@ -1,5 +1,5 @@
 SELECT *
-FROM executable('rand 0xa09871AEadF4994Ca12f5c0b6056BBd1d343c029 342000',
+FROM executable('uniform 0xa09871AEadF4994Ca12f5c0b6056BBd1d343c029 342000',
                 TabSeparated,
                 'block_number UInt64,
                 tx_index UInt64,

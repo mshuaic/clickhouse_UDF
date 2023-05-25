@@ -1,5 +1,5 @@
-bin_PROGRAMS = rand
-rand_SOURCES = rand.cpp truncated_normal.cpp
+bin_PROGRAMS = uniform
+uniform_SOURCES = uniform.cpp
 
 clean-local:
 	@rm -f config.status configure config.log
